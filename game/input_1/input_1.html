@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src={{url_for('static', filename='jquery/jquery-3.4.1.min.js')}}></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+                list-style: none;
+            }
+
+        .header {
+            background: #FE0000;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #fe0000, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #fe0000, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            height: 120px;
+            /* background-color: #B00901; */
+            margin: 0 auto;
+            text-align: center;
+            line-height: 50px;
+        }
+        img {
+            width: 9%;
+	        height: 9%;
+	        /* max-width: 30%;
+	        max-height: 30%; */
+            margin: 0 auto;
+
+        }
+        .border_line {
+            width: 960px;
+            height: 1300px;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+            margin: 0 auto;
+
+        }
+
+        .banner {
+            width: 960px;
+            height: 100px;
+            background-color: rgb(238, 188, 167);
+            margin: 0 auto;
+            text-align: center;
+            font-size: 48px;
+            line-height: 100px;
+            border-radius: 20px;
+
+        }
+        .main {
+            width: 960px;
+            height: 70px;
+            /* background-color: rgb(207, 195, 180); */
+            background-color: rgb(242, 243, 192);
+
+            margin: 0 auto;
+            text-align: center;
+            font-size: 38px;
+            line-height: 80px;
+            border-radius: 20px;
+        }
+
+        .manual_input {
+            width: 380px;
+            height: 100px;
+            line-height: 100px;
+            background-color: #FFDF80;
+            text-align: center;
+            font-size: 38px;
+            margin: 0 auto;
+            margin-top: 100px;
+            border-radius: 20px;
+        }
+
+        .pic_input {
+            width: 380px;
+            height: 100px;
+            line-height: 100px;
+            background-color: #FFDF80;
+            text-align: center;
+            /* font-style: Arial; */
+            font-size: 38px;
+            margin: 0 auto;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            border-radius: 20px;
+        }
+
+        .option {
+            width: 360px;
+            height: 120px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .input1, .input2, .input3, .input4 {
+            /* width: 460px; */
+            border-bottom: 2px solid #000;
+            padding: 10px 10px;
+            margin-bottom: 20px;
+        }
+
+        .input5 {
+            /* border-bottom: 2px solid #000; */
+            padding: 10px 10px;
+            margin-bottom: 20px;
+        }
+        .option p {
+            width: 960px;
+            margin:  0 auto;
+            margin-bottom: 10px;
+            font-size: 20px;
+            display: block;
+        }
+
+
+        .option input[type=checkbox] {
+            zoom: 240%;
+            vertical-align: middle;
+        }
+
+        .instruct {
+            width: 360px;
+            height: 120px;
+            margin: 0 auto;
+            /* margin-top: 50px; */
+            /* background-color: pink; */
+        }
+
+        .next {
+            border: 1px solid #fff;
+        }
+        button {
+            width: 120px;
+            height: 40px;
+            font-size: 20px;
+            /* line-height: 120px; */
+            /* display: block;
+            float: left;
+            margin: 0 auto; */
+            margin-top: 20px;
+            background-color: #cccccc;
+            box-shadow: 2px 2px 2px rgba(0 0 0 0.2);
+
+
+        }
+        
+    </style>
+</head>
+<!-- 页面结构部分 -->
+<body>
+    <!-- 页面头部 -->
+    <div class='header'>
+        <!-- 法院logo -->
+        <div class='logo'>
+            <img src={{url_for('static', filename='images/logo.png')}} alt="logo">
+        </div>
+    </div>
+    <!-- 加上外边框 -->
+    <div class='border_line'>
+        <!-- 案件信息录入部分 -->
+        <div class='banner'>案件信息录入</div>
+        <!-- 输入法律文书款项 -->
+        <div class='main'>输入法律文书涉及款项</div>
+        <!-- 输入选项部分 -->
+        <div class="option">
+            <form action="">
+                <div class="input1">
+                    <p><input type="checkbox" id="noDeplayedFree"> 不作为迟延履行利息基数的费用</p>
+                    <p><input type='checkbox' id="deplayedFree"> 作为迟延履行利息基数的费用</p>
+                </div>
+                <div class="input2">
+                    <p><input type="checkbox" id="principal">本金</p>
+                </div>
+                <div class="input3">
+                    <p><input type="checkbox" id="normalSimplePrincipal">正常利息性质的单利(固定值)</p>
+                    <p><input type="checkbox" id="normalSimpleCalculate">正常利息性质的单利(计算值)</p>
+                    <p><input type="checkbox" id="normalCompoundPrincipal">正常利息性质的复利(固定值)</p>
+                    <p><input type="checkbox" id="normalCompoundCalculate">正常利息性质的复利(计算值)</p>
+                </div>
+                <div class="input4">
+                    <p><input type="checkbox" id="penaltySimplePrincipal">罚息利息性质的单利(固定值)</p>
+                    <p><input type="checkbox" id="penaltySimpleCalculate">罚息利息性质的单利(计算值)</p>
+                    <p><input type="checkbox" id="penaltyCompoundPrincipal">罚息利息性质的复利(固定值)</p>
+                    <p><input type="checkbox" id="penaltyCompoundCalculate">罚息利息性质的复利(计算值)</p>
+                    <p><input type="checkbox" id="chinaBank">按照中国人民银行有关方法计算罚息</p>
+                </div>
+                <div class="input5">
+                    <p><input type="checkbox" id="damages">违约金</p>
+                </div>
+            </form>
+            <!-- 说明部分 -->
+            <div class="instruct">
+                <p>说明</p>
+                <p>1) 所谓固定值，是指法律文书已经计算好金额的判项；</p>
+                <p>2) 此处所谓单利的概念，与复利相对；</p>
+            </div>
+            <!-- 下一步选项 -->
+            <div class="next">
+                <button type="button" class="btn btn-primary" onclick='prepage()'>上一步</button>
+                <button type="button" class="btn btn-success" onclick='afterpage()'>下一步</button>
+                <!-- <ul>
+                    <li><button type="button" class="btn btn-primary">上一步</button></li>
+                    <li><button type="button" class="btn btn-success">下一步</button></li>
+                </ul> -->
+            </div>
+        </div>
+    </div>    
+</body>
+<script language="JavaScript">
+    function prepage() {
+    window.location.href = "/index";}
+</script>
+<script language="JavaScript">
+    function getChecked() {
+        let ndf = document.getElementById("noDeplayedFree");
+        let df = document.getElementById("deplayedFree");
+        let prp = document.getElementById("principal");
+        let nsp = document.getElementById("normalSimplePrincipal");
+        let nsc = document.getElementById("normalSimpleCalculate");
+        let ncp = document.getElementById("normalCompoundPrincipal");
+        let ncc = document.getElementById("normalCompoundCalculate");
+        let psp = document.getElementById("penaltySimplePrincipal");
+        let psc = document.getElementById("penaltySimpleCalculate");
+        let pcp = document.getElementById("penaltyCompoundPrincipal");
+        let pcc = document.getElementById("penaltyCompoundCalculate");
+        let cb = document.getElementById("chinaBank");
+        let da = document.getElementById("damages");
+
+        var check_checked = [];
+
+        if (ndf.checked === true){
+            check_checked.push(ndf.value);
+            sessionStorage.setItem('ndf', 'true');
+        }
+        else
+            {sessionStorage.setItem('ndf', 'false');}
+
+        if (df.checked === true){
+            check_checked.push(df.value);
+            sessionStorage.setItem('df', 'true');
+        }
+        else
+            {sessionStorage.setItem('df', 'false');}
+
+        if (prp.checked === true){
+            check_checked.push(prp.value);
+            sessionStorage.setItem('prp', 'true');
+        }
+        else
+            {sessionStorage.setItem('prp', 'false');}
+
+        if (nsp.checked === true){
+            check_checked.push(nsp.value);
+            sessionStorage.setItem('nsp', 'true');
+        }
+        else
+            {sessionStorage.setItem('nsp', 'false');}
+
+        if (nsc.checked === true){
+            check_checked.push(nsc.value);
+            sessionStorage.setItem('nsc', 'true');
+        }
+        else
+            {sessionStorage.setItem('nsc', 'false');}
+
+        if (ncp.checked === true){
+            check_checked.push(ncp.value);
+            sessionStorage.setItem('ncp', 'true');
+        }
+        else
+            {sessionStorage.setItem('ncp', 'false');}
+
+        if (ncc.checked === true){
+            check_checked.push(ncc.value);
+            sessionStorage.setItem('ncc', 'true');
+        }
+        else
+            {sessionStorage.setItem('ncc', 'false');}
+
+        if (psp.checked === true){
+            check_checked.push(psp.value);
+            sessionStorage.setItem('psp', 'true');
+        }
+        else
+            {sessionStorage.setItem('psp', 'false');}
+
+        if (psc.checked === true){
+            check_checked.push(psc.value);
+            sessionStorage.setItem('psc', 'true');
+        }
+        else
+            {sessionStorage.setItem('psc', 'false');}
+
+        if (pcp.checked === true){
+            check_checked.push(pcp.value);
+            sessionStorage.setItem('pcp', 'true');
+        }
+        else
+            {sessionStorage.setItem('pcp', 'false');}
+
+        if (pcc.checked === true){
+            check_checked.push(pcc.value);
+            sessionStorage.setItem('pcc', 'true');
+        }
+        else
+            {sessionStorage.setItem('pcc', 'false');}
+
+        if (cb.checked === true){
+            check_checked.push(cb.value);
+            sessionStorage.setItem('cb', 'true');
+        }
+        else
+            {sessionStorage.setItem('cb', 'false');}
+
+        if (da.checked === true){
+            check_checked.push(da.value);
+            sessionStorage.setItem('da', 'true');
+        }
+        else
+            {sessionStorage.setItem('da', 'false');}
+
+    }
+
+    function afterpage() {
+        getChecked();
+        window.location.href='/input_2';
+    }
+</script>
+</html>
